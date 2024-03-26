@@ -4,11 +4,20 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import SplashScreen from './src/screens/intro/SplashScreen';
+import LoginScreen from './src/screens/auth/LoginScreen';
+import RegisterScreen from './src/screens/auth/RegisterScreen';
+import HomeScreen from './src/screens/tabs/HomeScreen';
+import NotificationScreen from './src/screens/tabs/NotificationScreen';
+import SearchScreen from './src/screens/tabs/SearchScreen';
+import ProfileScreen from './src/screens/tabs/ProfileScreen';
+import DetailScreen from './src/screens/DetailScreen';
+import CartScreen from './src/screens/CartScreen';
 
-// const homeName = 'HomeScreen';
-// const cartScreen = 'CartScreen';
-// const favorScreen = 'FavoritesScreen';
-// const orderScreen = 'OrderScreen';
+
+const homeName = 'HomeScreen';
+const notiName = 'NotificationScreen';
+const searchName = 'SearchScreen';
+const profileName = 'ProfileScreen';
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -18,74 +27,82 @@ const App = () => {
     <NavigationContainer>
       <Stack.Navigator initialRouteName='SplashScreen' screenOptions={{headerShown: false}}>
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
+        <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen name="RegisterScreen" component={RegisterScreen} />
+        <Stack.Screen name="MainContainer" component={MainContainer} />
+        <Stack.Screen name="NotificationScreen" component={NotificationScreen} />
+        <Stack.Screen name="SearchScreen" component={SearchScreen} />
+        <Stack.Screen name="ProfileScreen" component={ProfileScreen} />
+        <Stack.Screen name="DetailScreen" component={DetailScreen} />
+        <Stack.Screen name="CartScreen" component={CartScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
 
-// const MainContainer = () => {
-//   return (
-//       <Tab.Navigator 
-//         initialRouteName={homeName} 
-//         screenOptions={{
-//           tabBarStyle: {backgroundColor: '#0C0F14', borderTopWidth: 0, height: 70},
-//           tabBarActiveTintColor: '#D17842',
-//           tabBarHideOnKeyboard: true,
-//           tabBarLabel:()=> null}} >
-//         <Tab.Screen
-//           name={homeName}
-//           component={HomeScreen}
-//           options={{
-//             headerShown: false,
-//             tabBarIcon: ({focused}) => (
-//               <Image
-//                 style={{height: 24, width: 24, tintColor: focused ? '#D17842' : undefined}}
-//                 source={require('./assets/images/home.png')}
-//               />
-//             ),
-//           }}
-//         />
-//         <Tab.Screen
-//           name={cartScreen}
-//           component={CartScreen}
-//           options={{
-//             headerShown: false,
-//             tabBarIcon: ({focused}) => (
-//               <Image
-//                 style={{height: 27, width: 24, tintColor: focused ? '#D17842' : undefined}}
-//                 source={require('./assets/images/cart.png')}
-//               />
-//             ),
-//           }}
-//         />
-//         <Tab.Screen
-//           name={favorScreen}
-//           component={FavoritesScreen}
-//           options={{
-//             headerShown: false,
-//             tabBarIcon: ({focused}) => (
-//               <Image
-//                 style={{height: 24, width: 27, tintColor: focused ? '#D17842' : undefined}}
-//                 source={require('./assets/images/favor.png')}
-//               />
-//             ),
-//           }}
-//         />
-//         <Tab.Screen
-//           name={orderScreen}
-//           component={OrderScreen}
-//           options={{
-//             headerShown: false,
-//             tabBarIcon: ({focused}) => (
-//               <Image
-//                 style={{height: 27, width: 22, tintColor: focused ? '#D17842' : undefined}}
-//                 source={require('./assets/images/order.png')}
-//               />
-//             ),
-//           }}
-//         />
-//       </Tab.Navigator>
-//   );
-// };
+const MainContainer = () => {
+  return (
+      <Tab.Navigator 
+        initialRouteName={homeName} 
+        screenOptions={{
+          tabBarStyle: {backgroundColor: 'white', borderTopWidth: 0, height: 70},
+          tabBarActiveTintColor: 'black',
+          tabBarHideOnKeyboard: true,
+          tabBarLabel:()=> null}} >
+        <Tab.Screen
+          name={homeName}
+          component={HomeScreen}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({focused}) => (
+              <Image
+                style={{height: 24, width: 24, tintColor: focused ? '#D17842' : undefined}}
+                source={require('./assets/images/home.png')}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name={notiName}
+          component={NotificationScreen}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({focused}) => (
+              <Image
+                style={{height: 35, width: 24, tintColor: focused ? '#D17842' : undefined}}
+                source={require('./assets/images/noti.png')}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name={searchName}
+          component={SearchScreen}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({focused}) => (
+              <Image
+                style={{height: 24, width: 27, tintColor: focused ? '#D17842' : undefined}}
+                source={require('./assets/images/search.png')}
+              />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name={profileName}
+          component={ProfileScreen}
+          options={{
+            headerShown: false,
+            tabBarIcon: ({focused}) => (
+              <Image
+                style={{height: 27, width: 22, tintColor: focused ? '#D17842' : undefined}}
+                source={require('./assets/images/profile.png')}
+              />
+            ),
+          }}
+        />
+      </Tab.Navigator>
+  );
+};
 
 export default App;

@@ -7,7 +7,7 @@ const SplashScreen = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      // navigation.navigate('Login');
+      navigation.navigate('LoginScreen');
     }, 3000);
 
     return () => clearTimeout(timer);
@@ -25,7 +25,7 @@ const SplashScreen = () => {
         backgroundColor={'#ffffff'}
         barStyle="dark-content"></StatusBar>
       <Image
-        source={require('../../../assets/photos/logotree.png')}
+        source={require('../../../assets/images/logotree.png')}
         style={{width: 189, height: 189}}
       />
     </View>

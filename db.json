@@ -1,0 +1,83 @@
+{
+    "users": [
+      {
+        "user_id": 1,
+        "username": "john_doe",
+        "email": "john@example.com",
+        "password": "hashed_password",
+        "address": "123 Main Street",
+        "phone_number": "123-456-7890"
+      },
+      {
+        "user_id": 2,
+        "username": "jane_smith",
+        "email": "jane@example.com",
+        "password": "hashed_password",
+        "address": "456 Elm Street",
+        "phone_number": "987-654-3210"
+      }
+    ],
+    "plants": [
+        {
+          "plant_id": 1,
+          "name": "Cây 1",
+          "price": "100,000 VND",
+          "description": "Mô tả về cây 1",
+          "image_url": "https://example.com/plant1.jpg"
+        },
+        {
+          "plant_id": 2,
+          "name": "Cây 2",
+          "price": "150,000 VND",
+          "description": "Mô tả về cây 2",
+          "image_url": "https://example.com/plant2.jpg"
+        }
+    ],
+    "pots": [
+        {
+          "pot_id": 1,
+          "name": "Chậu 1",
+          "price": "50,000 VND",
+          "description": "Mô tả về chậu 1",
+          "image_url": "https://example.com/pot1.jpg"
+        },
+        {
+          "pot_id": 2,
+          "name": "Chậu 2",
+          "price": "70,000 VND",
+          "description": "Mô tả về chậu 2",
+          "image_url": "https://example.com/pot2.jpg"
+        }
+    ],
+    "bills": [
+        {
+          "bill_id": 1,
+          "user_id": 1,
+          "total_amount": "250,000 VND",
+          "created_at": "2024-03-27T08:00:00Z"
+        },
+        {
+          "bill_id": 2,
+          "user_id": 2,
+          "total_amount": "120,000 VND",
+          "created_at": "2024-03-28T10:00:00Z"
+        }
+      ],
+      "bill_details": [
+        {
+          "bill_detail_id": 1,
+          "bill_id": 1,
+          "item_id": 1,
+          "quantity": 1,
+          "unit_price": "100,000 VND"
+        },
+        {
+          "bill_detail_id": 2,
+          "bill_id": 1,
+          "item_id": 2,
+          "quantity": 1,
+          "unit_price": "150,000 VND"
+        }
+    ]
+  }
+  
