@@ -1,83 +1,377 @@
 {
-    "users": [
-      {
-        "user_id": 1,
-        "username": "john_doe",
-        "email": "john@example.com",
-        "password": "hashed_password",
-        "address": "123 Main Street",
-        "phone_number": "123-456-7890"
-      },
-      {
-        "user_id": 2,
-        "username": "jane_smith",
-        "email": "jane@example.com",
-        "password": "hashed_password",
-        "address": "456 Elm Street",
-        "phone_number": "987-654-3210"
-      }
-    ],
-    "plants": [
+  "users": [
+    {
+      "id": "abd6",
+      "name": "john_doe",
+      "email": "john@example.com",
+      "hashedPassword": "hashed_password",
+      "phone": "123-456-7890"
+    },
+    {
+      "id": "d004",
+      "name": "Dao",
+      "email": "dao@gmail.com",
+      "hashedPassword": "ee79976c9380d5e337fc1c095ece8c8f22f91f306ceeb161fa51fecede2c4ba1",
+      "phone": "0123455678"
+    },
+    {
+      "id": "0a53",
+      "name": "Duc",
+      "email": "duc123@gmail.com",
+      "phone": "0111111111",
+      "hashedPassword": "ee79976c9380d5e337fc1c095ece8c8f22f91f306ceeb161fa51fecede2c4ba1"
+    }
+  ],
+  "plants": [
+    {
+      "name": "Cây thường xuân",
+      "price": "10000",
+      "description": "Loài cây này thường được mọi người chọn trồng trong không gian hẹp, nhỏ và nó leo tốt ở những nơi như cửa sổ, lan can... Nhờ có tán lá rậm rạp, thường xuân hấp thụ tốt phoocmon có hại - đây là một trong những chất dùng trong gỗ, thảm, nhựa, rất có hại cho sức khoẻ nếu bạn hít vào quá nhiều.",
+      "image_url": "https://free.vector6.com/wp-content/uploads/2021/03/0000000294-cay-xanh-tai-hinh-cay-canh-png-180.png",
+      "id": "8db1",
+      "size": "S",
+      "origin": "Viet Nam",
+      "quantity": "10"
+    },
+    {
+      "name": "Cây lan ý",
+      "price": "15000",
+      "description": "Đây là một trong những loại cây cảnh trồng trong nhà thích hợp nhất với khí hậu nhiệt đới của Việt Nam. Cây có thể lọc được chất trong sơn nước gây ra ung thư như benzen VOC hay các chất giúp đánh bóng đồ nội thất.",
+      "image_url": "https://free.vector6.com/wp-content/uploads/2021/03/0000000294-cay-xanh-tai-hinh-cay-canh-png-180.png",
+      "id": "8db2",
+      "size": "M",
+      "origin": "Viet Nam",
+      "quantity": "10"
+    },
+    {
+      "name": "Cây nha đam",
+      "price": "15000",
+      "description": "Chúng ta vẫn biết đến công dụng giải nhiệt, làm đẹp của cây nha đam, đặc biệt trong mùa hè nóng nực này. Bên cạnh đó, những chậu cây nha đam nhỏ đặt trên bàn làm việc cũng có thể hút các chất tẩy rửa bên trong phòng. ",
+      "image_url": "https://free.vector6.com/wp-content/uploads/2021/03/0000000138-cay-bonsai-tai-hinh-cay-canh-png-24.png",
+      "id": "8db3",
+      "size": "S",
+      "origin": "Trung Quoc",
+      "quantity": "10"
+    },
+    {
+      "name": "Cây lưỡi hổ",
+      "price": "15000",
+      "description": "Cây lưỡi hổ cũng là một trong những loại cây cảnh quen thuộc, rất phù hợp với những góc không gian hẹp, tối vì chúng phát triển theo chiều đứng, không tốn nhiều diện tích.",
+      "image_url": "https://free.vector6.com/wp-content/uploads/2021/03/0000000294-cay-xanh-tai-hinh-cay-canh-png-180.png",
+      "id": "8db4",
+      "size": "L",
+      "origin": "Nhat Ban",
+      "quantity": "10"
+    },
+    {
+      "name": "Cây ái mộc lá",
+      "price": "15000",
+      "description": "Có tên gọi rất lạ, ái mộc lá có lá hình trái tim xinh xắn, thường được đặt trên bàn làm việc thu hút mọi ánh nhìn. Cây cũng có khả năng tiêu diệt đáng kể lượng formaldehyde trong không khí.",
+      "image_url": "https://png.pngtree.com/png-clipart/20190903/original/pngtree-green-plant-bonsai-png-image_4453338.jpg",
+      "id": "8db5",
+      "size": "M",
+      "origin": "Viet Nam",
+      "quantity": "10"
+    }
+  ],
+  "pots": [
+    {
+      "name": "Chậu cây tài lộc",
+      "price": "5000",
+      "description": "Cây tài lộc hay còn được gọi là cây may mắn có thể nói là “Thần tài” vì mang đến nhiều tài lộc và may mắn cho chủ sở hữu nó, có tên khoa học là Hylocereus. Cây bắt nguồn từ Châu Mỹ, có ở Châu Phi, Ấn Độ, Nhật Bản và vùng Trung Đông. ",
+      "image_url": "https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcGQxMDktcGRvYmowMDc3MC1pbWFnZS5wbmc.png",
+      "id": "423f",
+      "size": "M",
+      "origin": "Viet Nam",
+      "quantity": "10"
+    },
+    {
+      "name": "Chậu cây phất dụ",
+      "price": "7000",
+      "description": "Cây phát dụ là loài cây có đặc điểm thích nghi tốt trong môi trường trong nhà. Có hơn 20 loài cùng họ ở Việt Nam, trong đó, gần như cây nào cũng được ưa chuộng vì mang lại may mắn, phát tài - phát lộc",
+      "image_url": "https://w7.pngwing.com/pngs/361/868/png-transparent-brown-ceramic-flower-pot-illustration-flowerpot-garden-bonsai-flower-pot-sticker-flower-flowers.png",
+      "id": "423g",
+      "size": "S",
+      "origin": "Trung Quoc",
+      "quantity": "10"
+    },
+    {
+      "name": "Chậu cây phong lộc hoa",
+      "price": "7000",
+      "description": "Cây ngọc bích hay còn gọi là cây phỉ thúy có tên khoa học là Crassula ovata. Cây ngọc bích thường có chiều cao từ 40 – 50cm loài này được trồng làm bonsai trong nhà. Thường được sử dụng làm chậu cảnh đẹp trong nhà hoặc trên bàn làm việc",
+      "image_url": "https://potsofdistinction.co.uk/wp-content/uploads/Citrus-1.jpg",
+      "id": "423t",
+      "size": "L",
+      "origin": "Nhat Ban",
+      "quantity": "10"
+    },
+    {
+      "name": "Chậu cây lưỡi hổ",
+      "price": "7000",
+      "description": "Tên thường gọi là cây “phát lộc hoa” có tên khoa học là “Guzmania Rondo, Guzmania lingulata”. Là loài cây thuộc họ Bromeliaceae (Dứa). có nguồn gốc xuất xứ từ vùng Andean.",
+      "image_url": "https://5.imimg.com/data5/LG/ED/MY-37586795/terracotta-pots-500x500.jpg",
+      "id": "423r",
+      "size": "M",
+      "origin": "Viet Nam",
+      "quantity": "10"
+    },
+    {
+      "name": "Chậu cây sống đời",
+      "price": "7000",
+      "description": "Tên thường gọi là cây “phát lộc hoa” có tên khoa học là “Guzmania Rondo, Guzmania lingulata”. Là loài cây thuộc họ Bromeliaceae (Dứa). có nguồn gốc xuất xứ từ vùng Andean.",
+      "image_url": "http://khuonmaucongcnc.com.vn/upload/images/chau-cay-ngoc-ngan.jpg",
+      "id": "113a",
+      "size": "S",
+      "origin": "Trung Quoc",
+      "quantity": "10"
+    },
+    {
+      "name": "Chậu cây phú quý",
+      "price": "7000",
+      "description": "Cây lưỡi hổ còn gọi là cây lưỡi cọp cũng có thể gọi là cây vĩ hổ, tên khoa học là Sansevieria trifasciata, thuộc họ Măng tây. Cây lưỡi hổ thường có chiều cao khoảng 50 - 60cm.",
+      "image_url": "http://khuonmaucongcnc.com.vn/upload/images/hinh-anh-hoa-lan-y.jpg",
+      "id": "424a",
+      "size": "S",
+      "origin": "Trung Quoc",
+      "quantity": "10"
+    },
+    {
+      "name": "Chậu cây ngọc ngân",
+      "price": "7000",
+      "description": "Hoa cây sống đời được mọc thành từng cụm màu đỏ, vàng, cam,... mọc rủ xuống trên một cán dài nhìn rất đẹp. Hoa thường nở vào mùa xuân khoảng từ tháng 2 đến tháng 5. Vì thế trong phong thủy tượng trưng cho sự tưới mới, sinh sôi, nảy nở.",
+      "image_url": "http://khuonmaucongcnc.com.vn/upload/images/Cay-lan-y.jpg",
+      "id": "42ki",
+      "size": "S",
+      "origin": "Trung Quoc",
+      "quantity": "10"
+    },
+    {
+      "name": "Chậu Hoa lan ý đẹp trong nhà",
+      "price": "7000",
+      "description": "Cây phú quý thuộc họ ráy, chiều cao của cây phú quý từ 30 đến 70cm. Cây chịu được ánh sáng yếu và không khí khô thích hợp trồng trong nhà, không chưa chất độc hại. ",
+      "image_url": "https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcGQxMDktcGRvYmowMDc3MC1pbWFnZS5wbmc.png",
+      "id": "463a",
+      "size": "S",
+      "origin": "Trung Quoc",
+      "quantity": "10"
+    },
+    {
+      "name": "Chậu Hoa xương rồng trong nhà",
+      "price": "7000",
+      "description": "ây ngọc ngân có tên khoa học là Dieffenbachia Picta, thuộc họ Araceae (Ráy) và có tên gọi khác là Valentine. Là biểu tượng của tình yêu, sự ngọt ngào của hạnh phúc gia đình.",
+      "image_url": "https://potsofdistinction.co.uk/wp-content/uploads/Citrus-1.jpg",
+      "id": "823a",
+      "size": "S",
+      "origin": "Trung Quoc",
+      "quantity": "10"
+    },
+    {
+      "name": "Chậu cây râm bụt",
+      "price": "7000",
+      "description": "Lan ý còn có nhiều tên gọi khác như là Huệ hòa bình, Vỹ hoa trắng, Bạch môn, Bạch hạc hoặc Thuận buồm xuôi gió,... Loại hoa có khả năng thanh lọc không khí rất tốt nên cực thích hợp để trang trí ",
+      "image_url": "https://potsofdistinction.co.uk/wp-content/uploads/Citrus-1.jpg",
+      "id": "453a",
+      "size": "S",
+      "origin": "Trung Quoc",
+      "quantity": "10"
+    }
+  ],
+  "carts": [],
+  "billOrders": [
+    {
+      "id": "d250",
+      "address": "Hai Duong",
+      "paymentMethod": "applepay",
+      "cartItems": [
         {
-          "plant_id": 1,
-          "name": "Cây 1",
-          "price": "100,000 VND",
-          "description": "Mô tả về cây 1",
-          "image_url": "https://example.com/plant1.jpg"
-        },
-        {
-          "plant_id": 2,
-          "name": "Cây 2",
-          "price": "150,000 VND",
+          "name": "Cây 3",
+          "price": "15000",
           "description": "Mô tả về cây 2",
-          "image_url": "https://example.com/plant2.jpg"
-        }
-    ],
-    "pots": [
-        {
-          "pot_id": 1,
-          "name": "Chậu 1",
-          "price": "50,000 VND",
-          "description": "Mô tả về chậu 1",
-          "image_url": "https://example.com/pot1.jpg"
+          "image_url": "https://free.vector6.com/wp-content/uploads/2021/03/0000000138-cay-bonsai-tai-hinh-cay-canh-png-24.png",
+          "id": "8db3",
+          "size": "S",
+          "origin": "Trung Quoc",
+          "quantity": 1
         },
         {
-          "pot_id": 2,
-          "name": "Chậu 2",
-          "price": "70,000 VND",
-          "description": "Mô tả về chậu 2",
-          "image_url": "https://example.com/pot2.jpg"
-        }
-    ],
-    "bills": [
-        {
-          "bill_id": 1,
-          "user_id": 1,
-          "total_amount": "250,000 VND",
-          "created_at": "2024-03-27T08:00:00Z"
+          "name": "Cây 4",
+          "price": "15000",
+          "description": "Mô tả về cây 2",
+          "image_url": "https://free.vector6.com/wp-content/uploads/2021/03/0000000294-cay-xanh-tai-hinh-cay-canh-png-180.png",
+          "id": "8db4",
+          "size": "L",
+          "origin": "Nhat Ban",
+          "quantity": 1
         },
         {
-          "bill_id": 2,
-          "user_id": 2,
-          "total_amount": "120,000 VND",
-          "created_at": "2024-03-28T10:00:00Z"
+          "name": "Cây 2",
+          "price": "15000",
+          "description": "Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2",
+          "image_url": "https://free.vector6.com/wp-content/uploads/2021/03/0000000294-cay-xanh-tai-hinh-cay-canh-png-180.png",
+          "id": "8db2",
+          "size": "M",
+          "origin": "Viet Nam",
+          "quantity": 3
+        },
+        {
+          "name": "Cây 1",
+          "price": "10000",
+          "description": "Mô tả về cây 1",
+          "image_url": "https://png.pngtree.com/png-clipart/20190903/original/pngtree-green-plant-bonsai-png-image_4453338.jpg",
+          "id": "8db1",
+          "size": "S",
+          "origin": "Viet Nam",
+          "quantity": 2
         }
       ],
-      "bill_details": [
+      "totalAmount": 95000,
+      "time": "2024-4-2 5:24:40"
+    },
+    {
+      "id": "b2dc",
+      "address": "Thanh Hoa",
+      "paymentMethod": "applepay",
+      "cartItems": [
         {
-          "bill_detail_id": 1,
-          "bill_id": 1,
-          "item_id": 1,
-          "quantity": 1,
-          "unit_price": "100,000 VND"
+          "name": "Cây 1",
+          "price": "10000",
+          "description": "Mô tả về cây 1",
+          "image_url": "https://png.pngtree.com/png-clipart/20190903/original/pngtree-green-plant-bonsai-png-image_4453338.jpg",
+          "id": "8db1",
+          "size": "S",
+          "origin": "Viet Nam",
+          "quantity": 1
         },
         {
-          "bill_detail_id": 2,
-          "bill_id": 1,
-          "item_id": 2,
-          "quantity": 1,
-          "unit_price": "150,000 VND"
+          "name": "Chậu 1",
+          "price": "5000",
+          "description": "Mô tả về chậu 1",
+          "image_url": "https://images.rawpixel.com/image_png_800/czNmcy1wcml2YXRlL3Jhd3BpeGVsX2ltYWdlcy93ZWJzaXRlX2NvbnRlbnQvbHIvcGQxMDktcGRvYmowMDc3MC1pbWFnZS5wbmc.png",
+          "id": "423f",
+          "size": "M",
+          "origin": "Viet Nam",
+          "quantity": 1
+        },
+        {
+          "name": "Chậu 3",
+          "price": "7000",
+          "description": "Mô tả về chậu 2",
+          "image_url": "https://potsofdistinction.co.uk/wp-content/uploads/Citrus-1.jpg",
+          "id": "423t",
+          "size": "L",
+          "origin": "Nhat Ban",
+          "quantity": 1
+        },
+        {
+          "name": "Chậu 2",
+          "price": "7000",
+          "description": "Mô tả về chậu 2",
+          "image_url": "https://w7.pngwing.com/pngs/361/868/png-transparent-brown-ceramic-flower-pot-illustration-flowerpot-garden-bonsai-flower-pot-sticker-flower-flowers.png",
+          "id": "423g",
+          "size": "S",
+          "origin": "Trung Quoc",
+          "quantity": 1
         }
-    ]
-  }
-  
+      ],
+      "totalAmount": 29000,
+      "time": "2024-4-2 5:27:42"
+    },
+    {
+      "id": "33d7",
+      "address": "Vinh Phuc",
+      "paymentMethod": "applepay",
+      "cartItems": [
+        {
+          "name": "Cây 1",
+          "price": "10000",
+          "description": "Mô tả về cây 1",
+          "image_url": "https://png.pngtree.com/png-clipart/20190903/original/pngtree-green-plant-bonsai-png-image_4453338.jpg",
+          "id": "8db1",
+          "size": "S",
+          "origin": "Viet Nam",
+          "quantity": 1
+        },
+        {
+          "name": "Cây 2",
+          "price": "15000",
+          "description": "Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2",
+          "image_url": "https://free.vector6.com/wp-content/uploads/2021/03/0000000294-cay-xanh-tai-hinh-cay-canh-png-180.png",
+          "id": "8db2",
+          "size": "M",
+          "origin": "Viet Nam",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25000,
+      "time": "2024-4-2 9:44:41"
+    },
+    {
+      "id": "e79d",
+      "address": "Ha Noi",
+      "paymentMethod": "amazon",
+      "cartItems": [
+        {
+          "name": "Cây 1",
+          "price": "10000",
+          "description": "Mô tả về cây 1",
+          "image_url": "https://png.pngtree.com/png-clipart/20190903/original/pngtree-green-plant-bonsai-png-image_4453338.jpg",
+          "id": "8db1",
+          "size": "S",
+          "origin": "Viet Nam",
+          "quantity": 10
+        },
+        {
+          "name": "Cây 3",
+          "price": "15000",
+          "description": "Mô tả về cây 2",
+          "image_url": "https://free.vector6.com/wp-content/uploads/2021/03/0000000138-cay-bonsai-tai-hinh-cay-canh-png-24.png",
+          "id": "8db3",
+          "size": "S",
+          "origin": "Trung Quoc",
+          "quantity": 4
+        },
+        {
+          "name": "Chậu 3",
+          "price": "7000",
+          "description": "Mô tả về chậu 2",
+          "image_url": "https://potsofdistinction.co.uk/wp-content/uploads/Citrus-1.jpg",
+          "id": "423t",
+          "size": "L",
+          "origin": "Nhat Ban",
+          "quantity": 6
+        }
+      ],
+      "totalAmount": 202000,
+      "time": "2024-4-2 12:15:52"
+    },
+    {
+      "id": "eca7",
+      "address": "Hai Phong",
+      "paymentMethod": "ggpay",
+      "cartItems": [
+        {
+          "name": "Cây 1",
+          "price": "10000",
+          "description": "Mô tả về cây 1",
+          "image_url": "https://png.pngtree.com/png-clipart/20190903/original/pngtree-green-plant-bonsai-png-image_4453338.jpg",
+          "id": "8db1",
+          "size": "S",
+          "origin": "Viet Nam",
+          "quantity": 1
+        },
+        {
+          "name": "Cây 2",
+          "price": "15000",
+          "description": "Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2Mô tả về cây 2",
+          "image_url": "https://free.vector6.com/wp-content/uploads/2021/03/0000000294-cay-xanh-tai-hinh-cay-canh-png-180.png",
+          "id": "8db2",
+          "size": "M",
+          "origin": "Viet Nam",
+          "quantity": 1
+        }
+      ],
+      "totalAmount": 25000,
+      "time": "2024-4-2 12:24:32"
+    }
+  ]
+}

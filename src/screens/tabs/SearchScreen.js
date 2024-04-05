@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,30 +8,56 @@ import {
   Image,
   FlatList,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const SearchScreen = () => {
+  const navigation = useNavigation();
   const [searchText, setSearchText] = useState('');
+  const [data, setData] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
 
-  // Hàm xử lý khi người dùng thay đổi nội dung của ô tìm kiếm
+  useEffect(() => {
+    const fetchData = async () => {
+      const potResponse = await fetch(`http://192.168.1.102:3000/pots`);
+      const plantResponse = await fetch(`http://192.168.1.102:3000/plants`);
+
+      const potResults = await potResponse.json();
+      const plantResults = await plantResponse.json();
+
+      const combinedResults = [...potResults, ...plantResults];
+
+      setData(combinedResults);
+      setSearchResults(combinedResults);
+    };
+
+    fetchData();
+  }, []);
+
   const handleSearch = text => {
     setSearchText(text);
-    // Thực hiện tìm kiếm dựa trên nội dung nhập vào và cập nhật kết quả tìm kiếm
-    // Ở đây chỉ là ví dụ, bạn cần thay đổi hàm này để phù hợp với logic tìm kiếm của bạn
-    const results = []; // Thay thế bằng logic tìm kiếm thực tế
-    setSearchResults(results);
+
+    if (text) {
+      const filteredResults = data.filter(item =>
+        item.name.toLowerCase().includes(text.toLowerCase())
+      );
+      setSearchResults(filteredResults);
+    } else {
+      setSearchResults(data);
+    }
   };
 
-  const pressToBack = () => {};
+  const pressToBack = () => {
+    navigation.goBack();
+  };
 
   return (
     <View style={styles.container}>
       {/* Header */}
       <View style={styles.header}>
         <View>
-          {/* <TouchableOpacity style={styles.button} onPress={pressToBack}>
+          <TouchableOpacity style={styles.button} onPress={pressToBack}>
             <Image source={require('../../../assets/images/back.png')}></Image>
-          </TouchableOpacity> */}
+          </TouchableOpacity>
         </View>
 
         <Text
@@ -54,13 +80,18 @@ const SearchScreen = () => {
       />
       <FlatList
         data={searchResults}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({item}) => (
-          <View style={styles.item}>
-            <Text>{item}</Text>{' '}
-            {/* Thay {item} bằng dữ liệu bạn muốn hiển thị từ kết quả tìm kiếm */}
-          </View>
+        renderItem={({ item }) => (
+          <TouchableOpacity style={styles.item} onPress={() => navigation.navigate('DetailScreen', { item })}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+              <View style={{ width: 270 }}>
+                <Text style={{ fontSize: 16 }}>{item.name}</Text>
+                <Text numberOfLines={1}>{item.description}</Text>
+              </View>
+              <Image style={styles.itemImage} source={{ uri: item.image_url }} />
+            </View>
+          </TouchableOpacity>
         )}
+        keyExtractor={item => item.id.toString()}
       />
     </View>
   );
@@ -77,8 +108,10 @@ const styles = StyleSheet.create({
     height: 40,
     borderColor: 'gray',
     borderWidth: 1,
-    paddingHorizontal: 10,
+    paddingHorizontal: 20,
     marginBottom: 10,
+    borderRadius: 20,
+    fontSize: 16
   },
   item: {
     padding: 10,
@@ -97,6 +130,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
+  },
+  itemImage: {
+    width: 50,
+    height: 50,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 10,
+    borderRadius: 10, // Rounded corners for images
   },
 });
 

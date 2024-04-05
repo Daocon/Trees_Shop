@@ -1,42 +1,23 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   View,
   Text,
   Image,
+  Button,
+  Alert,
   FlatList,
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import { useSelector, useDispatch } from "react-redux";
+import { removeItem, clearCart, addItem, saveCartItems, saveTotalAmount } from '../redux/action';
 
 const CartScreen = () => {
   const navigation = useNavigation();
-  const [cartItems, setCartItems] = useState([
-    {
-      id: 1,
-      name: 'Cây 1',
-      price: '100,000 VND',
-      image: require('../../assets/images/cay.png'),
-      quantity: 1,
-    },
-    {
-      id: 2,
-      name: 'Chậu 1',
-      price: '50,000 VND',
-      image: require('../../assets/images/chaucay.png'),
-      quantity: 2,
-    },
-    // Các mục khác trong giỏ hàng...
-  ]);
+  const cartItems = useSelector((state) => state.cart.items);
+  const dispatch = useDispatch();
 
-  const pressToBack = () => {
-    navigation.goBack();
-  };
-
-  const pressToDeleteCart = () => {
-    // Xóa tất cả các mục trong giỏ hàng
-    setCartItems([]);
-  };
 
   const totalAmount = cartItems.reduce(
     (total, item) =>
@@ -44,14 +25,55 @@ const CartScreen = () => {
     0,
   );
 
-  const renderItem = ({item}) => (
-    <View style={styles.itemContainer}>
-      <Image source={item.image} style={styles.itemImage} />
-      <View style={styles.itemDetails}>
-        <Text style={styles.itemName}>{item.name}</Text>
-        <Text style={styles.itemPrice}>Giá: {item.price}</Text>
-        <Text style={styles.itemQuantity}>Số lượng: {item.quantity}</Text>
+  console.log(cartItems, totalAmount);
+
+  const pressToBack = () => {
+    navigation.goBack();
+  };
+
+  const pressToDeleteCart = () => {
+    Alert.alert(
+      "Delete all items",
+      "Are you sure you want to delete all items from the cart?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel"
+        },
+        { text: "OK", onPress: () => dispatch(clearCart()) }
+      ],
+      { cancelable: false }
+    );
+  };
+
+  const pressToCheckout = () => {
+    dispatch(saveCartItems(cartItems));
+    dispatch(saveTotalAmount(totalAmount));
+    navigation.navigate('CheckoutScreen');
+  };
+
+  const renderItem = ({ item }) => (
+    <View>
+      <View style={styles.itemContainer}>
+        <Image source={{ uri: item.image_url }} style={styles.itemImage} />
+        <View style={styles.itemDetails}>
+          <Text style={styles.itemName}>{item.name}</Text>
+          <Text style={styles.itemPrice}>Giá: {item.price}</Text>
+          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+            <TouchableOpacity onPress={() => dispatch(removeItem(item))} style={{ backgroundColor: 'grey', borderRadius: 4, height: 30, width: 30, alignItems: 'center', justifyContent: 'center' }}>
+              <Text style={{ fontSize: 20, color: 'white' }}>-</Text>
+            </TouchableOpacity>
+            <Text style={{ marginHorizontal: 20, fontSize: 20 }}>{item.quantity}</Text>
+            <TouchableOpacity onPress={() => dispatch(addItem(item))} style={{ backgroundColor: 'grey', borderRadius: 4, height: 30, width: 30, alignItems: 'center', justifyContent: 'center' }}>
+              <Text style={{ fontSize: 20, color: 'white' }}>+</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+        <TouchableOpacity style={styles.button} onPress={() => dispatch(removeItem(item))}>
+          <Image source={require('../../assets/images/delete.png')} />
+        </TouchableOpacity>
       </View>
+      <View style={styles.line}></View>
     </View>
   );
 
@@ -73,22 +95,34 @@ const CartScreen = () => {
           </TouchableOpacity>
         </View>
       </View>
+      {cartItems.length === 0 ? (
+        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+          <Image source={require('../../assets/images/logotrees.png')} style={{ width: 200, height: 200 }} />
+          <Text style={{ fontSize: 20, color: 'black' }}>Bạn hãy mua gì đó rồi quay lại đây nha</Text>
+        </View>
+      ) : (
+        <>
+          <FlatList
+            data={cartItems}
+            renderItem={renderItem}
+            keyExtractor={item => item.id.toString()}
+            contentContainerStyle={styles.cartList}
+          />
 
-      <FlatList
-        data={cartItems}
-        renderItem={renderItem}
-        keyExtractor={item => item.id.toString()}
-        contentContainerStyle={styles.cartList}
-      />
 
-      <View style={styles.totalContainer}>
-        <Text style={styles.totalText}>Tổng cộng: {totalAmount} VND</Text>
-        <TouchableOpacity
-          style={styles.checkoutButton}
-          onPress={() => navigation.navigate('CheckoutScreen')}>
-          <Text style={styles.checkoutButtonText}>Thanh toán</Text>
-        </TouchableOpacity>
-      </View>
+          <View style={styles.totalContainer}>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <Text style={styles.totalText}>Tổng tiền:</Text>
+              <Text style={styles.totalText}> {totalAmount} VND</Text>
+            </View>
+            <TouchableOpacity
+              style={styles.checkoutButton}
+              onPress={pressToCheckout}>
+              <Text style={styles.checkoutButtonText}>Thanh toán</Text>
+            </TouchableOpacity>
+          </View>
+        </>
+      )}
     </View>
   );
 };
@@ -120,17 +154,31 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 10,
   },
+  line: {
+    height: 1,
+    backgroundColor: '#ddd',
+    marginVertical: 5,
+  },
+  buttonAddToCart: {
+    backgroundColor: 'green',
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 50,
+    borderRadius: 10,
+    marginBottom: 10
+  },
   cartList: {
     flexGrow: 1,
   },
   itemContainer: {
+    flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
+    marginVertical: 5
   },
   itemImage: {
-    width: 100,
-    height: 100,
+    width: 70,
+    height: 70,
     resizeMode: 'cover',
     borderRadius: 10,
     marginRight: 10,

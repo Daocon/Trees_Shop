@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   Image,
   StatusBar,
@@ -18,8 +18,9 @@ import {
   isValidPhoneNumber,
   isValidRePassword,
 } from '../../constants/validation';
+import CryptoJS from 'crypto-js';
 
-const RegisterScreen = ({navigation}) => {
+const RegisterScreen = ({ navigation }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [showRePassword, setShowRePassword] = useState(false);
   const [password, setPassword] = useState('');
@@ -47,19 +48,19 @@ const RegisterScreen = ({navigation}) => {
   };
 
   const checkEmailExists = async () => {
-    // try {
-    //   let url_check_login = 'http://192.168.0.101:3000/login?email=' + email;
-    //   const response = await fetch(url_check_login);
-    //   const data = await response.json();
-    //   console.log(data.length);
-    //   if (data.length === 0) {
-    //     setIsEmailExists(true);
-    //   } else {
-    //     setIsEmailExists(false);
-    //   }
-    // } catch (e) {
-    //   console.log(e);
-    // }
+    try {
+      let url_check_login = 'http://192.168.1.102:3000/users?email=' + email;
+      const response = await fetch(url_check_login);
+      const data = await response.json();
+      console.log(data.length);
+      if (data.length === 0) {
+        setIsEmailExists(true);
+      } else {
+        setIsEmailExists(false);
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleSubmit = async () => {
@@ -69,32 +70,32 @@ const RegisterScreen = ({navigation}) => {
         // Kiểm tra isEmailExists và hiển thị thông báo tương ứng
         if (!isEmailExists) {
           Alert.alert('Email already exists! Please enter another email ');
-          // Hiển thị thông báo cho người dùng
           return;
         } else {
-          console.log('Register success:', data);
+          const hashedPassword = CryptoJS.SHA256(password).toString();
+          // console.log('Register success:', data);
           navigation.navigate('Login');
-          // const apiUrl = 'http://192.168.0.101:3000/login';
-          // await fetch(apiUrl, {
-          //   method: 'POST',
-          //   headers: {
-          //     'Content-Type': 'application/json',
-          //   },
-          //   body: JSON.stringify({
-          //     name,
-          //     email,
-          //     phone,
-          //     password,
-          //   }),
-          // })
-          //   .then(response => response.json())
-          //   .then(data => {
-          //     console.log('Register success:', data);
-          //     navigation.navigate('Login');
-          //   })
-          //   .catch(error => {
-          //     console.error('Register error:', error);
-          //   });
+          const apiUrl = 'http://192.168.1.102:3000/users';
+          await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              name,
+              email,
+              phone,
+              hashedPassword,
+            }),
+          })
+            .then(response => response.json())
+            .then(data => {
+              console.log('Register success:', data);
+              navigation.navigate('LoginScreen');
+            })
+            .catch(error => {
+              console.error('Register error:', error);
+            });
         }
       } catch (error) {
         console.error('Check email error:', error);
@@ -117,7 +118,7 @@ const RegisterScreen = ({navigation}) => {
             style={styles.image}
             source={require('../../../assets/images/logotrees.png')}></Image>
         </View>
-        <View style={{alignItems: 'center'}}>
+        <View style={{ alignItems: 'center' }}>
           <Text
             style={{
               color: 'black',
@@ -129,7 +130,7 @@ const RegisterScreen = ({navigation}) => {
             Welcome to Lungo !!
           </Text>
         </View>
-        <View style={{alignItems: 'center', marginTop: 20}}>
+        <View style={{ alignItems: 'center', marginTop: 20 }}>
           <Text
             style={{
               color: '#828282',
@@ -258,7 +259,7 @@ const RegisterScreen = ({navigation}) => {
                     ? require('../../../assets/images/eye.png')
                     : require('../../../assets/images/eyeClose.png')
                 }
-                style={{width: 20, height: 20}}
+                style={{ width: 20, height: 20 }}
               />
             </TouchableOpacity>
           </View>
@@ -300,7 +301,7 @@ const RegisterScreen = ({navigation}) => {
                     ? require('../../../assets/images/eye.png')
                     : require('../../../assets/images/eyeClose.png')
                 }
-                style={{width: 20, height: 20}}
+                style={{ width: 20, height: 20 }}
               />
             </TouchableOpacity>
           </View>
@@ -329,7 +330,7 @@ const RegisterScreen = ({navigation}) => {
               You have an account? Click
             </Text>
           </View>
-          <View style={{marginStart: 5, marginBottom: 10}}>
+          <View style={{ marginStart: 5, marginBottom: 10 }}>
             <TouchableOpacity onPress={handleTextPressRegister}>
               <Text
                 style={{

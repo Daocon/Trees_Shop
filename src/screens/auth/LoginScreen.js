@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   Image,
   SafeAreaView,
@@ -13,12 +13,15 @@ import {
   ScrollView,
   Alert,
 } from 'react-native';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useDispatch } from 'react-redux';
+import { setUser } from '../../redux/userSlice';
+import CryptoJS from 'crypto-js';
 
-const LoginScreen = ({navigation}) => {
+const LoginScreen = ({ navigation }) => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const dispatch = useDispatch();
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
@@ -36,40 +39,36 @@ const LoginScreen = ({navigation}) => {
   const handleSubmit = async () => {
     // Alert.alert('Sai roiii');
 
-    // if (email.length == 0) {
-    //   Alert.alert('No email has been entered');
-    //   return;
-    // }
-    // if (password.length == 0) {
-    //   Alert.alert('No password has been entered');
-    //   return;
-    // }
-    navigation.navigate('MainContainer');
-    // let url_check_login = 'http://192.168.0.101:3000/login?email=' + email;
-    // fetch(url_check_login)
-    //   .then(res => res.json())
-    //   .then(async res_login => {
-    //     console.log(res_login.length);
-    //     if (res_login.length != 1) {
-    //       Alert.alert('Account does not exist. Please register');
-    //       return;
-    //     } else {
-    //       let objU = res_login[0];
-    //       if (objU.password != password) {
-    //         Alert.alert('Not correct password!');
-    //         return;
-    //       } else {
-    //         navigation.navigate('HomeScreen');
-    //         // try {
-    //         //   await AsyncStorage.setItem('loginInfor', JSON.stringify(objU));
-
-    //         // } catch (e) {
-    //         //   // saving error
-    //         //   console.log(e);
-    //         // }
-    //       }
-    //     }
-    //   });
+    if (email.length == 0) {
+      Alert.alert('No email has been entered');
+      return;
+    }
+    if (password.length == 0) {
+      Alert.alert('No password has been entered');
+      return;
+    }
+    const hashedPassword = CryptoJS.SHA256(password).toString();
+    // navigation.navigate('MainContainer');
+    //192.168.1.102
+    let url_check_login = 'http://192.168.1.102:3000/users?email=' + email;
+    fetch(url_check_login)
+      .then(res => res.json())
+      .then(async res_login => {
+        console.log(res_login.length);
+        if (res_login.length != 1) {
+          Alert.alert('Account does not exist. Please register');
+          return;
+        } else {
+          let objU = res_login[0];
+          if (objU.hashedPassword != hashedPassword) {
+            Alert.alert('Not correct password!');
+            return;
+          } else {
+            navigation.navigate('MainContainer');
+            dispatch(setUser(objU));
+          }
+        }
+      });
   };
   return (
     <KeyboardAvoidingView
@@ -84,7 +83,7 @@ const LoginScreen = ({navigation}) => {
             style={styles.image}
             source={require('../../../assets/images/logotrees.png')}></Image>
         </View>
-        <View style={{alignItems: 'center'}}>
+        <View style={{ alignItems: 'center' }}>
           <Text
             style={{
               color: 'black',
@@ -93,10 +92,10 @@ const LoginScreen = ({navigation}) => {
               lineHeight: 26,
               fontWeight: 700,
             }}>
-            Welcome to Lungo !!
+            Welcome to DaoconTrees !!
           </Text>
         </View>
-        <View style={{alignItems: 'center', marginTop: 20}}>
+        <View style={{ alignItems: 'center', marginTop: 20 }}>
           <Text
             style={{
               color: '#828282',
@@ -142,7 +141,7 @@ const LoginScreen = ({navigation}) => {
                     ? require('../../../assets/images/eye.png')
                     : require('../../../assets/images/eyeClose.png')
                 }
-                style={{width: 20, height: 20}}
+                style={{ width: 20, height: 20 }}
               />
             </TouchableOpacity>
           </View>
@@ -191,7 +190,7 @@ const LoginScreen = ({navigation}) => {
               Don't have an account? Click
             </Text>
           </View>
-          <View style={{marginStart: 5}}>
+          <View style={{ marginStart: 5 }}>
             <TouchableOpacity onPress={handleTextPressRegister}>
               <Text
                 style={{
@@ -226,7 +225,7 @@ const LoginScreen = ({navigation}) => {
               Forget Password? Click
             </Text>
           </View>
-          <View style={{marginStart: 5}}>
+          <View style={{ marginStart: 5 }}>
             <TouchableOpacity onPress={handleTextPressReset}>
               <Text
                 style={{
@@ -251,13 +250,15 @@ const styles = StyleSheet.create({
     paddingTop: 40,
     backgroundColor: '#fff',
   },
-  imageContainer: {alignItems: 'center'},
-  image: {width: 250, height: 250},
+  imageContainer: { alignItems: 'center' },
+  image: { width: 250, height: 250 },
   inputsContainer: {
     paddingStart: 30,
     marginTop: 25,
   },
-  emailInput: {},
+  emailInput: {
+
+  },
   passWordInput: {
     marginTop: 10,
   },
@@ -272,7 +273,7 @@ const styles = StyleSheet.create({
     borderColor: '#252A32',
     marginBottom: 0,
     height: 48,
-    color: '#828282',
+    color: 'black',
     paddingStart: 25,
     marginEnd: 30,
     marginTop: 5,

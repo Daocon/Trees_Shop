@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,19 +8,16 @@ import {
   Image,
   FlatList,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 
 const NotificationScreen = () => {
   const navigation = useNavigation();
   const [searchText, setSearchText] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
-  // Hàm xử lý khi người dùng thay đổi nội dung của ô tìm kiếm
   const handleSearch = text => {
     setSearchText(text);
-    // Thực hiện tìm kiếm dựa trên nội dung nhập vào và cập nhật kết quả tìm kiếm
-    // Ở đây chỉ là ví dụ, bạn cần thay đổi hàm này để phù hợp với logic tìm kiếm của bạn
-    const results = []; // Thay thế bằng logic tìm kiếm thực tế
+    const results = [];
     setSearchResults(results);
   };
 
@@ -50,8 +47,8 @@ const NotificationScreen = () => {
         </Text>
         <View></View>
       </View>
-      <View style={{alignItems: 'center', justifyContent: 'center'}}>
-        <Text style={{color: 'black'}}>
+      <View style={{ alignItems: 'center', justifyContent: 'center' }}>
+        <Text style={{ color: 'black' }}>
           Hiện chưa có thông báo nào dành cho bạn
         </Text>
       </View>

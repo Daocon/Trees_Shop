@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,10 +9,15 @@ import {
   Alert,
   FlatList,
 } from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
+import { useSelector, useDispatch } from 'react-redux';
+import { clearUser } from '../../redux/userSlice';
 
 const ProfileScreen = () => {
   const navigation = useNavigation();
+  const user = useSelector(state => state.user.user);
+  const dispatch = useDispatch();
+
   const pressToBack = () => {
     navigation.goBack();
   };
@@ -28,19 +33,26 @@ const ProfileScreen = () => {
         },
         {
           text: 'Đăng xuất',
-          onPress: () => pressToLogout(),
+          onPress: () => {
+            dispatch(clearUser());
+            pressToLogout();
+          }
         },
       ],
-      {cancelable: false},
+      { cancelable: false },
     );
   };
 
   const pressToLogout = () => {
     navigation.reset({
       index: 0,
-      routes: [{name: 'LoginScreen'}],
+      routes: [{ name: 'LoginScreen' }],
     });
   };
+
+  const handleToOrder = () => {
+    navigation.navigate('OrderBillScreen');
+  }
 
   return (
     <View style={styles.container}>
@@ -71,8 +83,8 @@ const ProfileScreen = () => {
           style={styles.avatar}
         />
         <View style={styles.userInfo}>
-          <Text style={styles.userName}>John Doe</Text>
-          <Text style={styles.email}>johndoe@example.com</Text>
+          <Text style={styles.userName}>{user?.name}</Text>
+          <Text style={styles.email}>{user?.email}</Text>
         </View>
       </View>
 
@@ -85,7 +97,7 @@ const ProfileScreen = () => {
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Cẩm nang trồng cây</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button} onPress={handleToOrder}>
           <Text style={styles.buttonText}>Lịch sử giao dịch</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.button}>

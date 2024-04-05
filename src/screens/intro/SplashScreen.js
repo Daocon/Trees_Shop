@@ -1,6 +1,6 @@
-import React, {useEffect} from 'react';
-import {Image, StatusBar, Text, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import React, { useEffect } from 'react';
+import { Image, StatusBar, Text, View } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const SplashScreen = () => {
   const navigation = useNavigation();
@@ -26,7 +26,7 @@ const SplashScreen = () => {
         barStyle="dark-content"></StatusBar>
       <Image
         source={require('../../../assets/images/logotree.png')}
-        style={{width: 189, height: 189}}
+        style={{ width: 189, height: 189 }}
       />
     </View>
   );
